@@ -5,7 +5,7 @@ import { Handle, Position } from 'reactflow';
 export const BaseNode = ({ id, style, title, handles = [], children }) => {
   return (
     <div 
-      className="w-56 bg-slate-800/80 backdrop-blur-md border border-slate-600 rounded-lg shadow-xl overflow-hidden flex flex-col"
+      className="min-w-[224px] max-w-[600px] w-auto h-auto bg-slate-800/80 backdrop-blur-md border border-slate-600 rounded-lg shadow-xl overflow-hidden flex flex-col"
       style={style}
     >
       {handles.map((h, i) => (
