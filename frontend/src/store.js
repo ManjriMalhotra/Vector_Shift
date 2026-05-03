@@ -44,10 +44,46 @@ export const useStore = create((set, get) => ({
       set({
         nodes: get().nodes.map((node) => {
           if (node.id === nodeId) {
-            node.data = { ...node.data, [fieldName]: fieldValue };
+            return {
+              ...node,
+              data: { ...node.data, [fieldName]: fieldValue },
+            };
           }
-  
+
           return node;
+        }),
+      });
+    },
+    updateTextNode: (nodeId, textValue, variables) => {
+      const variableHandleIds = new Set(
+        variables.map((variable) => `${nodeId}-var-${variable}`)
+      );
+
+      set({
+        nodes: get().nodes.map((node) => {
+          if (node.id !== nodeId) {
+            return node;
+          }
+
+          return {
+            ...node,
+            data: {
+              ...node.data,
+              text: textValue,
+            },
+          };
+        }),
+        edges: get().edges.filter((edge) => {
+          const isTextVariableHandle =
+            edge.target === nodeId &&
+            typeof edge.targetHandle === 'string' &&
+            edge.targetHandle.startsWith(`${nodeId}-var-`);
+
+          if (!isTextVariableHandle) {
+            return true;
+          }
+
+          return variableHandleIds.has(edge.targetHandle);
         }),
       });
     },

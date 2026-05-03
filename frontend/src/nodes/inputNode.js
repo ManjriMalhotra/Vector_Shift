@@ -1,7 +1,8 @@
 // inputNode.js
 
 import { useState } from 'react';
-import { Handle, Position } from 'reactflow';
+import { Position } from 'reactflow';
+import { BaseNode } from './BaseNode';
 
 export const InputNode = ({ id, data }) => {
   const [currName, setCurrName] = useState(data?.inputName || id.replace('customInput-', 'input_'));
@@ -16,32 +17,27 @@ export const InputNode = ({ id, data }) => {
   };
 
   return (
-    <div style={{width: 200, height: 80, border: '1px solid black'}}>
-      <div>
-        <span>Input</span>
-      </div>
-      <div>
-        <label>
-          Name:
-          <input 
-            type="text" 
-            value={currName} 
-            onChange={handleNameChange} 
-          />
-        </label>
-        <label>
-          Type:
-          <select value={inputType} onChange={handleTypeChange}>
-            <option value="Text">Text</option>
-            <option value="File">File</option>
-          </select>
-        </label>
-      </div>
-      <Handle
-        type="source"
-        position={Position.Right}
-        id={`${id}-value`}
-      />
-    </div>
+    <BaseNode
+      id={id}
+      title="Input"
+      handles={[{ type: 'source', position: Position.Right, id: `${id}-value` }]}
+    >
+      <label className="flex flex-col gap-1">
+        <span>Name:</span>
+        <input 
+          type="text" 
+          value={currName} 
+          onChange={handleNameChange} 
+          className="w-full bg-slate-900/50 border border-slate-700 rounded p-1.5 text-slate-200 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+        />
+      </label>
+      <label className="flex flex-col gap-1">
+        <span>Type:</span>
+        <select value={inputType} onChange={handleTypeChange} className="w-full bg-slate-900/50 border border-slate-700 rounded p-1.5 text-slate-200 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
+          <option value="Text">Text</option>
+          <option value="File">File</option>
+        </select>
+      </label>
+    </BaseNode>
   );
 }
