@@ -14,7 +14,7 @@ export const LLMNode = ({ id, data }) => {
         { type: 'source', position: Position.Right, id: `${id}-response` }
       ]}
     >
-      <div>
+      <div className="flex flex-col gap-2 text-slate-300">
         <span>This is a LLM.</span>
       </div>
     </BaseNode>

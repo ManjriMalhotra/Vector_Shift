@@ -16,18 +16,17 @@ export const ConditionNode = ({ id, data }) => {
         { type: 'source', position: Position.Right, id: `${id}-true`, style: { top: '33%' } },
         { type: 'source', position: Position.Right, id: `${id}-false`, style: { top: '66%' } }
       ]}
-      style={{ height: 100 }}
     >
-      <label>
-        If:
+      <label className="flex flex-col gap-1">
+        <span>If:</span>
         <input 
           type="text" 
           value={condition} 
           onChange={(e) => setCondition(e.target.value)} 
-          style={{ width: '100%' }}
+          className="w-full bg-slate-900/50 border border-slate-700 rounded p-1.5 text-slate-200 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 font-mono text-xs"
         />
       </label>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '5px', fontSize: '10px' }}>
+      <div className="flex justify-between mt-2 text-[10px] text-slate-400 font-medium uppercase tracking-wider">
         <span>True (top)</span>
         <span>False (bot)</span>
       </div>

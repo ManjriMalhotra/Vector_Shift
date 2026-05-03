@@ -21,9 +21,9 @@ export const MathNode = ({ id, data }) => {
         { type: 'source', position: Position.Right, id: `${id}-output` }
       ]}
     >
-      <label>
-        Operation:
-        <select value={operation} onChange={handleOperationChange}>
+      <label className="flex flex-col gap-1">
+        <span>Operation:</span>
+        <select value={operation} onChange={handleOperationChange} className="w-full bg-slate-900/50 border border-slate-700 rounded p-1.5 text-slate-200 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
           <option value="Add">Add (+)</option>
           <option value="Subtract">Subtract (-)</option>
           <option value="Multiply">Multiply (*)</option>

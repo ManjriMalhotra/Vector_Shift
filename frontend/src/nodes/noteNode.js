@@ -7,16 +7,13 @@ export const NoteNode = ({ id, data }) => {
   const [note, setNote] = useState(data?.note || 'Type your note here...');
 
   return (
-    <BaseNode
-      id={id}
-      title="Note"
-      style={{ background: '#fef3c7', border: '1px solid #f59e0b', height: 100 }}
-    >
+    <div className="w-56 bg-amber-100/90 backdrop-blur-md border border-amber-400 rounded-lg shadow-xl overflow-hidden flex flex-col min-h-[100px] p-2">
       <textarea
         value={note}
         onChange={(e) => setNote(e.target.value)}
-        style={{ width: '100%', height: '50px', border: 'none', background: 'transparent', resize: 'none' }}
+        className="w-full h-full min-h-[80px] bg-transparent border-none resize-none text-amber-900 placeholder-amber-700/50 focus:outline-none text-sm font-medium"
+        placeholder="Type your note here..."
       />
-    </BaseNode>
+    </div>
   );
 }

@@ -22,17 +22,18 @@ export const InputNode = ({ id, data }) => {
       title="Input"
       handles={[{ type: 'source', position: Position.Right, id: `${id}-value` }]}
     >
-      <label>
-        Name:
+      <label className="flex flex-col gap-1">
+        <span>Name:</span>
         <input 
           type="text" 
           value={currName} 
           onChange={handleNameChange} 
+          className="w-full bg-slate-900/50 border border-slate-700 rounded p-1.5 text-slate-200 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
         />
       </label>
-      <label>
-        Type:
-        <select value={inputType} onChange={handleTypeChange}>
+      <label className="flex flex-col gap-1">
+        <span>Type:</span>
+        <select value={inputType} onChange={handleTypeChange} className="w-full bg-slate-900/50 border border-slate-700 rounded p-1.5 text-slate-200 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
           <option value="Text">Text</option>
           <option value="File">File</option>
         </select>
